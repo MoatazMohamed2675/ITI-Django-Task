@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Insert Track{% endblock %}
+
+{% block content %}
+    
+    <form method="post">
+        {% csrf_token %}    
+        <label for="trname">Track name</label>
+        <input type="text" id="trname" name="trname" required>
+        <input type="submit" value="Insert Track">
+    </form>
+{% endblock %}

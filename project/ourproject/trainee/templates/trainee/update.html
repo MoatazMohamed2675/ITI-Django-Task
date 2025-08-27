@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update Trainee
+{% endblock %}
+
+{% block content %}
+<h1>Update trainee</h1>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label for="trname">Name:</label>
+    <input type="text" id="trname" name="trname" value="{{ trainee.name }}"><br><br>
+    <label for="tremail">Email:</label>
+    <input type="email" id="tremail" name="tremail" value="{{ trainee.email }}"><br><br>
+    <label for="trtrack">Track:</label>
+    <select id="trtrack" name="trtrack">
+        {% for track in tracks %}
+            {% if track.id == trainee.trackid.id %}
+                <option value="{{ track.id }}" selected>{{ track.name }}</option>
+            {% else %}
+                <option value="{{ track.id }}">{{ track.name }}</option>
+            {% endif %}
+        {% endfor %}
+
+    </select>
+    <br><br>
+    {% if trainee.image %}
+    <label for="">current image:</label>
+    <img src="{{ trainee.image.url }}" alt="">
+    <br><br>
+    {% endif %}
+    <label for="trimage">Image:</label>
+    <input type="file" id="trimage" name="trimage"><br><br>
+    <input type="submit" value="Update Trainee">
+</form>
+{% endblock %}
